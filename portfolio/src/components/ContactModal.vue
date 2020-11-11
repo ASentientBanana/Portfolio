@@ -1,6 +1,7 @@
 <template>
   <div class="main-contact-container">
     <form :class="['contact-form', contactFormState]">
+      <button class="close-contact-form-btn" @click="openContactForm">X</button>
       <label for="name">Name</label>
       <input type="text" name="name" id="name" />
       <label for="email">Email</label>
@@ -44,16 +45,17 @@ export default defineComponent({
   components: {},
   data: () => {
     return {
-      contactFormState: "null"
+      contactFormState: "null",
     };
   },
   methods: {
-    openContactForm: function() {
+    openContactForm: function (e:any) {
+      e.preventDefault();
       this.contactFormState == "open-contact-form"
         ? (this.contactFormState = "null")
         : (this.contactFormState = "open-contact-form");
-    }
-  }
+    },
+  },
 });
 </script> 
 
@@ -93,16 +95,12 @@ export default defineComponent({
       background-color: #f8f8f8;
       resize: none;
     }
-    textarea:hover {
-      
-    }
     label {
       color: white;
       font-size: 1.2em;
     }
     input[type="submit"] {
       width: 100%;
-      // height: 1%;
       background-color: #4c6faf;
       color: white;
       padding: 14px 20px;
@@ -113,14 +111,26 @@ export default defineComponent({
     }
 
     input[type="submit"]:hover {
-      background-color:#3e5b91;
+      background-color: #3e5b91;
+    }
+    .close-contact-form-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 40px;
+      width: 40px;
+      background-color: #253a47;
+      color: white;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      font-size: 25px;
     }
   }
   .open-contact-form {
     display: block !important;
     background-color: #253a47;
   }
-
   .btn-container {
     margin-bottom: 5%;
     .container {
@@ -134,13 +144,11 @@ export default defineComponent({
       justify-content: center;
       align-items: center;
     }
-
     .center {
       width: 180px;
       height: 60px;
       position: absolute;
     }
-
     .btn {
       width: 180px;
       height: 60px;
@@ -150,7 +158,6 @@ export default defineComponent({
       outline: none;
       animation: snakeBorder 1s ease-in-out;
     }
-
     svg {
       position: absolute;
       left: 0;
@@ -160,13 +167,12 @@ export default defineComponent({
       stroke-dasharray: 150 480;
       stroke-dashoffset: 150;
       animation: snakeBorder 5s infinite forwards;
-      -webkit-animation-delay: 5s;
+      animation-delay: 4s;
+      -webkit-animation-delay: 4s;
     }
-
     .btn:hover svg {
       stroke-dashoffset: -480;
     }
-
     .btn span {
       color: white;
       font-size: 18px;
