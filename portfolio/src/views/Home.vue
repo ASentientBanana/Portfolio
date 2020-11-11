@@ -30,9 +30,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #15222a;
   .about-container {
-    padding-top: 15%;
+    padding-top: 5%;
     display: flex;
+    flex-direction: column;
+    h1 {
+      margin-top: 2%;
+    }
     .about-image {
       border: black solid 1px;
       display: flex;
@@ -45,16 +50,13 @@
       display: flex;
       align-items: center;
       text-align: justify;
-        overflow: auto;
+      overflow: auto;
     }
   }
   @media only screen and (max-width: 768px) {
-    .about-container {
-      flex-direction: column;
       .about-text {
         max-height: 70vh !important;
       }
-    }
   }
 }
 </style>

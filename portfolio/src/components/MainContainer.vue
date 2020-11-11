@@ -1,6 +1,6 @@
 <template>
-  <div class="flip-card" v-on:click="flipMainElement">
-    <div :class="[x,y]" >
+  <div class="flip-card">
+    <div :class="[flipCondition,flipCardInner]">
       <div class="flip-card-front">
         <Projects />
       </div>
@@ -8,22 +8,21 @@
           <Home />
       </div>
     </div>
+        
   </div>
 </template>
 
 <style scoped lang="scss">
 @import "../assets/colors/colors.scss";
 
-
 .flip-card {
   background-color: transparent;
   width: 100%;
   min-height: 90vh;
-  // border: 1px solid #f1f1f1;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  padding: 5%;
 }
 
-/* This container is needed to position the front and back side */
 .flip-card-inner {
   position: relative;
   width: 100%;
@@ -36,10 +35,7 @@
 .flip-condition{
     transform: rotateY(180deg);  
 }
-/* Do an horizontal flip when you move the mouse over the flip box container */
 
-
-/* Position the front and back side */
 .flip-card-front,
 .flip-card-back {
   position: absolute;
@@ -76,16 +72,14 @@ export default defineComponent({
     Projects
   },
   
+  
   data: () => {
     return {
       x:"flip-condition",
       y:"flip-card-inner"
     };
   },
-  methods:{
-    flipMainElement:function(){
-      this.x == 'flip-condition'?this.x = 'null':this.x = 'flip-condition';
-    }
-  },
+  props:['flipCondition','flipCardInner'],
+
 });
 </script>

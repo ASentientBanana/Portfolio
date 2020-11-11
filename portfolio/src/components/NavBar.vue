@@ -1,7 +1,7 @@
 <template>
     <nav>
-        <router-link class="nav-link" v-for="(link,index) in navLinks" :to="link.to" :key="index">{{link.body}}</router-link> 
-        <!-- <router-link :to="{name:'AboutMe',params:{id:555}}">Profile</router-link> -->
+        <h3 class="nav-link"  v-for="(link,index) in navLinks" :to="link.to" :key="index" @click="link.callback()">{{link.body}}</h3> 
+       
     </nav>
 </template>
 
@@ -14,6 +14,9 @@ nav{
     height: 50px;
     display: flex;
     justify-content: space-around;
+    .disabled{
+        pointer-events: none;
+    }
     .nav-link{
         width: 100%;
         height: 100%;
@@ -22,6 +25,7 @@ nav{
         align-items: center;
         text-decoration: none;
         color:  $accentColor;
+        cursor: pointer;
     }
 }
 </style>
@@ -31,15 +35,17 @@ import { defineComponent } from "vue";
 import { stringifyQuery } from "vue-router";
 export default defineComponent({
   name: "NavBar",
+  props:['toHomeCallback','toProjectsCallback'],
   components: {
   },
-  data:()=>{
-      return{
+  data:function(){
+      return {
           navLinks:[
-              {to:'/', body:"About Me"},
-              {to:'/projects-and-skills', body:"Projects & Skills"}
+              {to:'/', body:"About Me",callback:this.toHomeCallback},
+              {to:'/projects-and-skills', body:"Projects & Skills",callback:this.toProjectsCallback}
           ]
       }
+       
     }
 });
 </script>
