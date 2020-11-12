@@ -22,7 +22,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #15222a;
+  background-color: $backgroundColor;
+  
+  // height: 100vh;
   .about-container {
     padding-top: 5%;
     display: flex;
@@ -147,7 +149,7 @@ export default defineComponent({
       for (let index = 0; index < this.txt.length; index++) {
         setTimeout(() => {
           this.txt2 += this.txt[index];
-        }, 12 * index);
+        }, 8 * index);
       }
     },
   },

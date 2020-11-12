@@ -1,7 +1,7 @@
 <template>
   <div class="flip-card">
     <div :class="[flipCondition,flipCardInner]">
-      <div class="flip-card-front">
+      <div :class="['flip-card-front',activateback]">
         <Projects />
       </div>
       <div class="flip-card-back">
@@ -31,11 +31,6 @@
   transition: transform 0.8s;
   transform-style: preserve-3d;
 }
-
-.flip-condition{
-    transform: rotateY(180deg);  
-}
-
 .flip-card-front,
 .flip-card-back {
   position: absolute;
@@ -49,6 +44,38 @@
 .flip-card-front {
   background-color: #bbb;
   color: black;
+  opacity: 0;
+  pointer-events: none;
+}
+.activate-back{
+  animation: activate 0.4s ease forwards;
+}
+.deactivate-back{
+  animation: deactivate 0.4s ease forwards;
+}
+@keyframes activate
+{
+  from{
+    opacity: 0;
+    pointer-events: none;
+  }to{
+    opacity: 1;
+    pointer-events: all; 
+  }
+}
+
+@keyframes deactivate
+{
+  from{
+    opacity: 1;
+    pointer-events: all;
+  }to{
+    opacity: 0;
+    pointer-events: none;
+  }
+} 
+.flip-condition{
+    transform: rotateY(180deg);  
 }
 
 /* Style the back side */
@@ -71,15 +98,13 @@ export default defineComponent({
     Home,
     Projects
   },
-  
-  
   data: () => {
     return {
       x:"flip-condition",
-      y:"flip-card-inner"
+      y:"flip-card-inner",
     };
   },
-  props:['flipCondition','flipCardInner'],
+  props:['flipCondition','flipCardInner','activateback'],
 
 });
 </script>

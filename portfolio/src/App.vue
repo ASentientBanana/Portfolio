@@ -7,12 +7,13 @@
     <MainContainer
       :flipCondition="flipCondition"
       :flipCardInner="flipCardInner"
+      :activateback="activateBack"
     />
     <ContactModal />
   </div>
-</template>
-//  
+</template>  
 <style lang="scss">
+@import "./assets/colors/colors.scss";
 @font-face {
   font-family: courierRegular;
   src: url("./assets/fonts/CourierNewRegular.ttf");
@@ -24,7 +25,7 @@
   box-sizing: border-box;
 }
 body {
-  background-color: #15222a;
+  background-color: $backgroundColor;
   height: 100vh;
 }
 #app {
@@ -44,6 +45,8 @@ import ContactModal from "./components/ContactModal.vue";
 interface DataInterface {
   flipCondition: string;
   flipCardInner: string;
+  activateBack:string;
+  
 }
 export default defineComponent({
   name: "Home",
@@ -54,18 +57,25 @@ export default defineComponent({
     ContactModal
   },
   data: () => {
-    const d: DataInterface = {
+    const data: DataInterface = {
       flipCondition: "flip-condition",
-      flipCardInner: "flip-card-inner"
+      flipCardInner: "flip-card-inner",
+      activateBack:"null"
+
     };
-    return d;
+    return data;
   },
   methods: {
     flipToHOmeElement: function() {
       this.flipCondition = "flip-condition";
+      this.activateBack = 'deactivate-back'
+      console.log(this.activateBack);
+      
     },
     flipToProjectsElement: function() {
       this.flipCondition = "null";
+      this.activateBack = 'activate-back'
+      console.log(this.activateBack);
     }
   }
 });

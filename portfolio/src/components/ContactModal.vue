@@ -78,22 +78,25 @@ export default defineComponent({
     input[type="email"],
     select {
       width: 100%;
+      height: 10%;
       padding: 12px 20px;
       margin: 8px 0;
       display: inline-block;
       border: 1px solid #ccc;
       border-radius: 4px;
       box-sizing: border-box;
+      font-size: 25px;
     }
     textarea {
       width: 100%;
-      height: 35%;
+      height: 40%;
       padding: 12px 20px;
       box-sizing: border-box;
       border: 2px solid #ccc;
       border-radius: 4px;
       background-color: #f8f8f8;
       resize: none;
+      font-size: 25px;
     }
     label {
       color: white;
@@ -156,6 +159,7 @@ export default defineComponent({
       background: transparent;
       border: none;
       outline: none;
+      background-color: $backgroundColor;
       animation: snakeBorder 1s ease-in-out;
     }
     svg {
