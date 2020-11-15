@@ -104,7 +104,11 @@ export default defineComponent({
       y:"flip-card-inner",
     };
   },
-  props:['flipCondition','flipCardInner','activateback'],
-
+  // props:['flipCondition','flipCardInner','activateback'],
+  props:{
+    flipCondition:String,
+    flipCardInner:String,
+    activateback:String
+  }
 });
 </script>

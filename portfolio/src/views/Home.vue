@@ -33,18 +33,18 @@
       margin-top: 2%;
     }
     .about-image {
-      border: black solid 1px;
       display: flex;
       justify-content: center;
       align-items: center;
     }
     .about-text {
-      border: black solid 1px;
+      max-width: 50vw;
       padding: 30px;
       display: flex;
-      align-items: center;
-      text-align: justify;
+      align-items: start;
+      // text-align: center;
       overflow: auto;
+      color:$accentColor;
     }
     .name-text {
       h1 {
@@ -101,7 +101,6 @@
           transform: translate(13px, -1px) skew(-13deg);
         }
       }
-
       h1:after {
         animation: glitchBotom 1.5s linear infinite;
         clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
@@ -126,6 +125,7 @@
   @media only screen and (max-width: 768px) {
     .about-text {
       max-height: 70vh !important;
+      max-width: 100vw !important;
     }
   }
 }
@@ -136,10 +136,10 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "Home",
   components: {},
-  data: () => {
+  data(){
     return {
       i: 0,
-      txt:"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam quisquam corrupti provident enim vel eos accusamus ab deleniti iure nulla distinctio quod odit at odio, unde perspiciatis facere molestiae cumque. Recusandae est illum accusantium rerum quasi maiores porro error enim mollitia alias inventore rem iusto, voluptatibus ducimus deleniti impedit consequatur eveniet, illo modi, laudantium cum exercitationem Lorem Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam quisquam corrupti provident enim vel eos accusamus ab deleniti iure nulla distinctio quod odit at odio, unde perspiciatis facere molestiae cumque. Recusandae est illum accusantium rerum quasi maiores porro error enim mollitia alias inventore rem iusto, voluptatibus ducimus deleniti impedit consequatur eveniet, illo modi, laudantium cum exercitationem ",
+      txt:"Trenutno studiram na mašinskom fakultetu, usmerenje Mašinske konstrukcije razvoj i inženjering. Iskusan u WEB programiranju na strani klijenta i servera kao i  programiranje u igricama i softverskoj automtizaciji. ,Trenutno studiram na mašinskom fakultetu, usmerenje Mašinske konstrukcije razvoj i inženjering. Iskusan u WEB programiranju na strani klijenta i servera kao i  programiranje u igricama i softverskoj automtizaciji.",
       txt2: "",
       speed: 5,
     };
@@ -149,11 +149,11 @@ export default defineComponent({
       for (let index = 0; index < this.txt.length; index++) {
         setTimeout(() => {
           this.txt2 += this.txt[index];
-        }, 8 * index);
+        }, 5 * index);
       }
     },
   },
-  mounted: function () {
+  mounted() {
     this.typeEffect();
   },
 });

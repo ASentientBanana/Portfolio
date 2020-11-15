@@ -9,6 +9,7 @@
     >
       {{ link.body }}
     </h3>
+    <!-- <ContactModal /> -->
   </nav>
 </template>
 
@@ -40,10 +41,13 @@ nav {
 <script lang="ts">
 import { defineComponent } from "vue";
 import { stringifyQuery } from "vue-router";
+// import ContactModal from './ContactModal.vue'
 export default defineComponent({
   name: "NavBar",
   props: ["toHomeCallback", "toProjectsCallback"],
-  components: {},
+  components: {
+    // ContactModal
+  },
   data: function () {
     return {
       navLinks: [

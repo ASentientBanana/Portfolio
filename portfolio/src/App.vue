@@ -9,7 +9,9 @@
       :flipCardInner="flipCardInner"
       :activateback="activateBack"
     />
+    <footer>
     <ContactModal />
+    </footer>
   </div>
 </template>  
 <style lang="scss">
@@ -27,6 +29,9 @@
 body {
   background-color: $backgroundColor;
   height: 100vh;
+  max-height: 100vh;
+  padding-bottom:60px ;
+  overflow: hidden;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -34,6 +39,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+footer{
+  width: 100vw;
+  height: 60px;
+
 }
 </style>
 
@@ -46,7 +56,6 @@ interface DataInterface {
   flipCondition: string;
   flipCardInner: string;
   activateBack:string;
-  
 }
 export default defineComponent({
   name: "Home",
@@ -66,13 +75,13 @@ export default defineComponent({
     return data;
   },
   methods: {
-    flipToHOmeElement: function() {
+    flipToHOmeElement() {
       this.flipCondition = "flip-condition";
       this.activateBack = 'deactivate-back'
       console.log(this.activateBack);
       
     },
-    flipToProjectsElement: function() {
+    flipToProjectsElement() {
       this.flipCondition = "null";
       this.activateBack = 'activate-back'
       console.log(this.activateBack);

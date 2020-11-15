@@ -15,23 +15,15 @@
       ></textarea>
       <input type="submit" value="Submit" />
     </form>
-
-    <div class="btn-container">
-      <div class="container">
-        <div class="center">
-          <button class="btn" @click="openContactForm">
-            <svg
-              width="180px"
-              height="60px"
-              viewBox="0 0 180 60"
-              class="border"
-            >
-              <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
-              <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
-            </svg>
-            <span>Contact Me</span>
-          </button>
-        </div>
+    <div class="container">
+      <div class="center">
+        <button class="btn" @click="openContactForm">
+          <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+            <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+            <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+          </svg>
+          <span>Contact</span>
+        </button>
       </div>
     </div>
   </div>
@@ -43,13 +35,13 @@ import { stringifyQuery } from "vue-router";
 export default defineComponent({
   name: "ContactModal",
   components: {},
-  data: () => {
+  data(){
     return {
       contactFormState: "null",
     };
   },
   methods: {
-    openContactForm: function (e:any) {
+    openContactForm: function (e: any) {
       e.preventDefault();
       this.contactFormState == "open-contact-form"
         ? (this.contactFormState = "null")
@@ -62,8 +54,11 @@ export default defineComponent({
 <style scoped lang="scss">
 @import "../assets/colors/colors.scss";
 .main-contact-container {
+  // width: 100vw;
+  // height: 50vh;
   .contact-form {
     text-align: justify;
+    z-index: 10;
     border-radius: 6px;
     height: 60vh;
     width: 50vw;
@@ -86,6 +81,7 @@ export default defineComponent({
       border-radius: 4px;
       box-sizing: border-box;
       font-size: 25px;
+      background-color: #e7eaef;
     }
     textarea {
       width: 100%;
@@ -94,17 +90,17 @@ export default defineComponent({
       box-sizing: border-box;
       border: 2px solid #ccc;
       border-radius: 4px;
-      background-color: #f8f8f8;
+      background-color: #e7eaef;
       resize: none;
       font-size: 25px;
     }
     label {
-      color: white;
+      color: $accentColor;
       font-size: 1.2em;
     }
     input[type="submit"] {
       width: 100%;
-      background-color: #4c6faf;
+      background-color: #06828e;
       color: white;
       padding: 14px 20px;
       margin: 8px 0;
@@ -114,7 +110,7 @@ export default defineComponent({
     }
 
     input[type="submit"]:hover {
-      background-color: #3e5b91;
+      background-color: #9ba8b8;
     }
     .close-contact-form-btn {
       position: absolute;
@@ -122,7 +118,7 @@ export default defineComponent({
       right: 0;
       height: 40px;
       width: 40px;
-      background-color: #253a47;
+      background-color: #080b14;
       color: white;
       border-radius: 5px;
       border: none;
@@ -132,66 +128,79 @@ export default defineComponent({
   }
   .open-contact-form {
     display: block !important;
-    background-color: #253a47;
+    background-color: #080b14;
   }
-  .btn-container {
-    margin-bottom: 5%;
-    .container {
-      width: 400px;
-      height: 400px;
-      position: fixed;
-      left: 50%;
-      top: 95%;
-      transform: translate(-50%, -50%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .center {
-      width: 180px;
-      height: 60px;
-      position: absolute;
-    }
-    .btn {
-      width: 180px;
-      height: 60px;
-      cursor: pointer;
-      background: transparent;
-      border: none;
-      outline: none;
-      background-color: $backgroundColor;
-      animation: snakeBorder 1s ease-in-out;
-    }
-    svg {
-      position: absolute;
-      left: 0;
-      top: 0;
-      fill: none;
-      stroke: #fff;
-      stroke-dasharray: 150 480;
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: red;
+  }
+  .container {
+    width: 100vw;
+    height: 60px;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    bottom: -30px;
+}
+  .center {
+    width: 180px;
+    height: 60px;
+    position: absolute;
+  }
+  .btn {
+    width: 180px;
+    height: 60px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    background-color: $backgroundColor;
+    animation: snakeBorder 1s ease-in-out;
+  }
+  svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    fill: none;
+    stroke: #fff;
+    stroke-dasharray: 150 480;
+    stroke-dashoffset: 150;
+    animation: snakeBorder 5s infinite forwards;
+    animation-delay: 4s;
+    -webkit-animation-delay: 4s;
+  }
+  .btn:hover svg {
+    stroke-dashoffset: -480;
+  }
+  .btn span {
+    color: white;
+    font-size: 18px;
+    font-weight: 100;
+  }
+  @keyframes snakeBorder {
+    0% {
       stroke-dashoffset: 150;
-      animation: snakeBorder 5s infinite forwards;
-      animation-delay: 4s;
-      -webkit-animation-delay: 4s;
     }
-    .btn:hover svg {
-      stroke-dashoffset: -480;
+    50% {
+      stroke-dashoffset: 780;
     }
-    .btn span {
-      color: white;
-      font-size: 18px;
-      font-weight: 100;
+    100% {
+      stroke-dashoffset: 780;
     }
-    @keyframes snakeBorder {
-      0% {
-        stroke-dashoffset: 150;
-      }
-      50% {
-        stroke-dashoffset: 780;
-      }
-      100% {
-        stroke-dashoffset: 780;
-      }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+.main-contact-container {
+  .contact-form {
+    position: absolute;
+    width: 90vw;
+    left: 5vw;
     }
   }
 }
