@@ -2,8 +2,13 @@
   <div class="main-project-card-container">
     <div class="flip-card">
       <div :class="[flipState, 'flip-card-inner']">
-        <div class="flip-card-front" >
-          <img :src="image" :alt="name" @click="doAFlip" :class="clickEventDisable"/>
+        <div class="flip-card-front">
+          <img
+            :src="image"
+            :alt="name"
+            @click="doAFlip"
+            :class="clickEventDisable"
+          />
           <!-- <p>
             {{ description }}
           </p> -->
@@ -20,8 +25,8 @@
             <li v-for="(t, i) in tech" :key="i">{{ t }}</li>
           </ul>
           <div class="project-links">
-            <a href="" v-if="github">Github</a>
-            <a href="" v-if="live">Live</a>
+            <a :href="github" v-if="github">Github</a>
+            <a :href="live" v-if="live">Live</a>
           </div>
         </div>
       </div>
@@ -46,7 +51,7 @@ export default defineComponent({
   data() {
     return {
       flipState: "null",
-      clickEventDisable:'null'
+      clickEventDisable: "null",
     };
   },
   methods: {
@@ -55,8 +60,9 @@ export default defineComponent({
       else this.flipState = "do-a-flip";
       this.disableClick();
     },
-    disableClick(){
-      if (this.clickEventDisable === "click-event-diable") this.clickEventDisable = "null";
+    disableClick() {
+      if (this.clickEventDisable === "click-event-diable")
+        this.clickEventDisable = "null";
       else this.clickEventDisable = "click-event-diable";
     },
   },
@@ -67,9 +73,10 @@ export default defineComponent({
 <style scoped lang="scss">
 @import "../assets/colors/colors.scss";
 .main-project-card-container {
+  // border:springgreen solid 2px;
   .flip-card {
     background-color: transparent;
-    width: 90%;
+    width: 95%;
     height: 200px;
     perspective: 1000px;
   }
@@ -102,13 +109,12 @@ export default defineComponent({
     // justify-content: center;
     align-items: center;
     overflow: hidden;
-    .click-event-diable{
+    .click-event-diable {
       pointer-events: none;
     }
     img {
       width: 90%;
       height: 90%;
-      
     }
     h1 {
       position: absolute;
@@ -116,6 +122,7 @@ export default defineComponent({
       bottom: 0px;
       width: 100%;
       color: $accentColor;
+      font-size: 1.5rem;
     }
     p {
       display: flex;
@@ -123,7 +130,7 @@ export default defineComponent({
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      font-size: 0.8rem;
+      font-size: 1rem;
     }
   }
   .flip-card-back {
@@ -133,6 +140,12 @@ export default defineComponent({
     padding {
       left: 50px;
     }
+    h1 {
+      font-size: 1rem;
+      padding-top: 3px;
+      width: 80%;
+      margin: auto;
+    }
     div {
       display: block;
     }
@@ -140,7 +153,7 @@ export default defineComponent({
       position: absolute;
       top: 5px;
       right: 5px;
-      background: #080b14;
+      background: none;
       border: none;
       width: 25px;
       height: 25px;
@@ -149,24 +162,25 @@ export default defineComponent({
       font-weight: bold;
     }
     p {
-      // border: purple solid 1px;
-      height: 45%;
+      height: 55%;
       overflow: hidden;
       padding: 10px;
       margin-bottom: 4px;
       overflow: hidden;
-      font-size: 0.8rem;
+      font-size: 1rem;
+      text-align: left;
+      // padding-left: 5px;
     }
     ul {
-      width: 50%;
+      width: 90%;
       list-style: none;
       display: flex;
-      justify-content: space-around;
+      justify-content: space-evenly;
       margin: auto;
       color: $blueColor;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: bold;
-      text-decoration: underline;
+      text-decoration:underline overline 1px;
     }
     .project-links {
       position: absolute;
@@ -174,7 +188,7 @@ export default defineComponent({
       bottom: 5px;
       display: flex;
       justify-content: space-around;
-      height: 35px;
+      height: 20px;
       a {
         background-color: $blueColor;
         color: $accentColor;
@@ -191,22 +205,24 @@ export default defineComponent({
     }
   }
   @media only screen and (max-width: 768px) {
-    .flip-card-front {
-      background-color: $backgroundColor;
-      img {
-        margin: auto;
-        width: 100%;
-        height: 100%;
+    .main-project-card-container {
+      .flip-card-front {
+        background-color: $backgroundColor;
+        img {
+          margin: auto;
+          width: 100%;
+          height: 100%;
+        }
+        p {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.7rem;
+        }
       }
-      p {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.7rem;
+      .flip-card-back {
+        font-size: 0.8rem;
       }
-    }
-    .flip-card-back {
-      font-size: 0.8rem;
     }
   }
 }

@@ -3,15 +3,15 @@
     <div class="about-container">
       <div class="about-image">
         <img
-          src="https://uybor.uz/borless/uybor/img/user-images/user_no_photo_100x100.png"
+          :src="require('../assets/images/ljoptica.jpg')"
           alt=""
           @click="typeEffect"
         />
       </div>
       <div class="name-text">
-        <h1 title="Petar Kocic">Petar Kocic</h1>
+        <h1 title="Petar Kocic">Petar Kocić</h1>
       </div>
-      <p class="about-text" ref="aboutText">{{ txt2 }}</p>
+      <p class="about-text" ref="aboutText">{{ OutputText }}</p>
     </div>
   </div>
 </template>
@@ -30,22 +30,27 @@
     display: flex;
     flex-direction: column;
     h1 {
-      margin-top: 2%;
+      margin-top: 2%; 
     }
     .about-image {
       display: flex;
       justify-content: center;
       align-items: center;
+      img{
+        height: 150px;
+        border-radius: 50%;
+
+      }
     }
     .about-text {
       max-width: 50vw;
       padding: 30px;
       display: flex;
       align-items: start;
-      // text-align: center;
+      text-align: left;
       overflow: auto;
       color:$accentColor;
-    }
+   }
     .name-text {
       h1 {
         align-items: center;
@@ -126,6 +131,7 @@
     .about-text {
       max-height: 70vh !important;
       max-width: 100vw !important;
+      font-size: 0.9rem;
     }
   }
 }
@@ -139,17 +145,19 @@ export default defineComponent({
   data(){
     return {
       i: 0,
-      txt:"Trenutno studiram na mašinskom fakultetu, usmerenje Mašinske konstrukcije razvoj i inženjering. Iskusan u WEB programiranju na strani klijenta i servera kao i  programiranje u igricama i softverskoj automtizaciji. ,Trenutno studiram na mašinskom fakultetu, usmerenje Mašinske konstrukcije razvoj i inženjering. Iskusan u WEB programiranju na strani klijenta i servera kao i  programiranje u igricama i softverskoj automtizaciji.",
-      txt2: "",
+      baseText:
+      `I am currently going to Uneversity for mechanical engeneering majoring in mechanical design. I am working as a game programmer for an indie studio based in Nis Serbia on the Unity3D Game Engine.
+      Aside from University and game development i also work freelance as a front end web developer in technologies like ReactJS and VueJS and write projects in python c# and javascript in my spare time.`,
+      OutputText: "",
       speed: 5,
     };
   },
   methods: {
     typeEffect: function () {
-      for (let index = 0; index < this.txt.length; index++) {
+      for (let index = 0; index < this.baseText.length; index++) {
         setTimeout(() => {
-          this.txt2 += this.txt[index];
-        }, 5 * index);
+          this.OutputText += this.baseText[index];
+        }, 18 * index);
       }
     },
   },

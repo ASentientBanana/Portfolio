@@ -1,16 +1,19 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "../views/Home.vue";
-// import ProjectsAndSkills from '../views/AboutMe.vue'
+import Root from "../views/Root.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "Root",
+    component: Root,
+    props:true
+  
   },
   {
-    path: "/projects-and-skills",
-    name: "ProjectAndSkills",
-    component: () => import("../views/ProjectAndSkills.vue")
+    path: "/admin",
+    component: () => {
+      console.log(":s");
+      return import("../views/AdminPanel.vue")
+    }
   },
 ];
 

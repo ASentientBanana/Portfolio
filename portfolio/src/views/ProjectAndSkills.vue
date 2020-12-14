@@ -17,9 +17,9 @@
         v-for="(proj, index) in projects"
         :key="index"
         :id="index"
-        :name="proj.name + ' ' + index"
+        :name="proj.name"
         :description="proj.description"
-        :image="require('../assets/images/tmp.png')"
+        :image="require(`../assets/images/projects/${proj.image}` )"
         :tech="proj.tech"
         :github="proj.github"
         :live="proj.live"
@@ -43,50 +43,30 @@ export default defineComponent({
     return {
       projects: [
         {
-          name: "project:",
+          name: "project",
           description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate porro odio soluta maxime id illo quasi, eos tenetur esse reprehenderit laudantium vitae sapiente, a maiores perferendis ex. Error, rem doloremque.",
+            "A simple blog using react ,nodejs and postgre sql",
           image: "tmp.png",
-          tech: ["vue", "react", "nodejs"],
+          github:"https://github.com/ASentientBanana/blog",
+          tech: ["vue", "nodejs"],
         },
         {
-          name: "project:",
+          name: "Sorting Visualiser",
           description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate porro odio soluta maxime id illo quasi, eos tenetur esse reprehenderit laudantium vitae sapiente, a maiores perferendis ex. Error, rem doloremque.",
-          image: "tmp.png",
-          tech: ["vue", "react", "C#"],
-          github: "dasdasd",
+            "A visualiser made in react showing how bubble sort , selection sort and quicksort work",
+          image: "sort.png",
+          github:"https://github.com/ASentientBanana/blog",
+          live:"https://www.sorting.petarkocic.net/",
+          tech: ["ReactJS", "JavaScript", "CSS","HTML"],
         },
         {
-          name: "Project:",
+          name: "Movie info app",
           description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate porro odio soluta maxime id illo quasi, eos tenetur esse reprehenderit laudantium vitae sapiente, a maiores perferendis ex. Error, rem doloremque.",
-          image: "tmp.png",
-          tech: ["vue", "react", "nodejs"],
-          live: "dasdas",
-        },
-        {
-          name: "project:",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate porro odio soluta maxime id illo quasi, eos tenetur esse reprehenderit laudantium vitae sapiente, a maiores perferendis ex. Error, rem doloremque.",
-          image: "tmp.png",
-          tech: ["vue", "react", "nodejs"],
-          github: "dasda",
-          live: "dasdas",
-        },
-        {
-          name: "project:",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate porro odio soluta maxime id illo quasi, eos tenetur esse reprehenderit laudantium vitae sapiente, a maiores perferendis ex. Error, rem doloremque.",
-          image: "tmp.png",
-          tech: ["vue", "react", "nodejs"],
-        },
-        {
-          name: "project:",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate porro odio soluta maxime id illo quasi, eos tenetur esse reprehenderit laudantium vitae sapiente, a maiores perferendis ex. Error, rem doloremque.",
-          image: "tmp.png",
-          tech: ["vue", "react", "nodejs"],
+            "An app for displaing information about movies such as actor credits written in flutter and using The MovieDb API.",
+          image: "sort.png",
+          github:"https://github.com/ASentientBanana/FlutterActorCredits",
+          live:"https://www.sorting.petarkocic.net/",
+          tech: ["ReactJS", "JavaScript", "CSS","HTML"],
         },
       ],
       technologies: {
@@ -112,6 +92,7 @@ export default defineComponent({
 @import "../assets/colors/colors.scss";
 .main-container {
   background-color: #15222a;
+  // border: thistle 1px solid;
   .title {
     color: $accentColor;
   }
@@ -135,14 +116,11 @@ export default defineComponent({
     background-color: $accentColor;
   }
   .project-container {
-  margin: auto;
-
+    margin: auto;
     padding-top: 10px;
     max-height: 60vh;
-    max-width: 50vw;
+    max-width: 70vw;
     overflow-y:scroll;
-    // scrollbar-color: $accentColor $backgroundColor;
-    // scrollbar-width: thin;
     display: grid;
     grid-template-columns: 1fr 1fr;
     row-gap: 20px;
@@ -152,6 +130,8 @@ export default defineComponent({
     .project-container {
       display: flex;
       flex-direction: column;
+      // border: teal solid 1px;
+      max-width: 95% !important;
     }
   }
 }
