@@ -79,11 +79,6 @@ export default defineComponent({
   },
   mounted(){
     console.log(Object.keys(this.technologies));
-    window.addEventListener('wheel',()=>{
-      console.log('scroll');
-      
-    })
-    
   }
 });
 </script>
@@ -119,10 +114,10 @@ export default defineComponent({
     margin: auto;
     padding-top: 10px;
     max-height: 60vh;
-    max-width: 70vw;
+    max-width: 90vw;
     overflow-y:scroll;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     row-gap: 20px;
     
   }

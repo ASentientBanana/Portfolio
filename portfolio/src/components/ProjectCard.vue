@@ -9,9 +9,6 @@
             @click="doAFlip"
             :class="clickEventDisable"
           />
-          <!-- <p>
-            {{ description }}
-          </p> -->
           <h1>{{ name }}</h1>
         </div>
         <div class="flip-card-back">
@@ -77,8 +74,9 @@ export default defineComponent({
   .flip-card {
     background-color: transparent;
     width: 95%;
-    height: 200px;
+    height: 25vh;
     perspective: 1000px;
+    max-width:500px
   }
   .flip-card-inner {
     position: relative;
@@ -160,6 +158,7 @@ export default defineComponent({
       font-size: 25px;
       color: $accentColor;
       font-weight: bold;
+      cursor:pointer;
     }
     p {
       height: 55%;
@@ -206,7 +205,8 @@ export default defineComponent({
   }
   @media only screen and (max-width: 768px) {
     .main-project-card-container {
-      .flip-card-front {
+     .flip-card{
+        .flip-card-front {
         background-color: $backgroundColor;
         img {
           margin: auto;
@@ -223,6 +223,7 @@ export default defineComponent({
       .flip-card-back {
         font-size: 0.8rem;
       }
+     }
     }
   }
 }

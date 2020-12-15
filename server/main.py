@@ -4,9 +4,11 @@ from flask import Flask, jsonify, Response, request
 from models.Project import Project
 from util import write_to_json
 import uuid
-
+import sqlite3
 
 app = Flask(__name__)
+
+DATABASE = './database.db'
 
 
 @app.route('/')
@@ -39,6 +41,18 @@ def delete_project():
 @app.route('/edit-project')
 def edit_project():
     return Response("Edited")
+
+
+@app.route('/test', methods=['POST'])
+def test():
+    if request.method == 'GET':
+        print('-----------------')
+        print('got')
+        print('-----------------')
+    if request.method == 'POST':
+        print('-----------------')
+
+    return Response("test")
 
 
 if __name__ == "__main__":
