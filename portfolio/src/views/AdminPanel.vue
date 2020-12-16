@@ -1,6 +1,18 @@
 <template>
   <div class="admin-body">
-    <form action="" method="post">
+    <div v-if="!showForm" class="log-in">
+      <label for="password">Admin password</label>
+      <input
+        v-model="passwordField"
+        type="password"
+        name="password"
+        id="password"
+        required
+      />
+      <p v-if="wrongPassword">Wrong Password... Try again</p>
+      <button @click="logInUser">Log in</button>
+    </div>
+    <form v-if="showForm" action="" method="post">
       <label for="project-name" ref="proj">Project Name</label>
       <input
         type="text"
@@ -39,8 +51,7 @@
         id="project-image"
         required
       />
-      <label for="password">Admin password</label>
-      <input type="password" name="password" id="password" required />
+
       <input
         type="submit"
         value="Submit"
@@ -48,7 +59,7 @@
         @click="testClick"
       />
     </form>
-    <img :src="image" />
+    <h2 v-if="projectAdded">Project added</h2>
   </div>
 </template>
 
@@ -59,12 +70,16 @@ export default defineComponent({
   name: "AdminPanel",
   data() {
     return {
+      showForm: false,
+      wrongPassword: false,
+      projectAdded: false,
       projecName: "test1",
       description: "test2",
       tech: "test3",
       git: "test4",
       live: "test5",
       image: "",
+      passwordField: "",
     };
   },
   methods: {
@@ -84,13 +99,28 @@ export default defineComponent({
     },
     async sendRequest(formData: FormData) {
       axios
-        .post("http://localhost:5000/test", formData)
-        .then((response) => console.log(response))
+        .post("http://localhost:5000/add-project", formData)
+        .then((response) => {
+          if (response.data === 200) this.projectAddedShow();
+        })
         .catch((e) => console.log(e));
     },
     imageHandler(ev: any) {
       this.image = ev.target.files[0];
-      console.log("image");
+    },
+    projectAddedShow() {
+      this.projectAdded = true;
+    },
+    logInUser() {
+      const fd = new FormData();
+      fd.append("password", this.passwordField);
+      axios
+        .post("http://localhost:5000/log-in", fd)
+        .then((response) => {
+          if (response.data === 200) this.showForm = true;
+          else if (response.data === 401) this.wrongPassword = true;
+        })
+        .catch((e) => console.log(e));
     },
   },
 });
@@ -99,6 +129,15 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import "../assets/colors/colors.scss";
 .admin-body {
+  h2 {
+    color: $greyColor;
+  }
+  .log-in {
+    width: 60%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+  }
   padding-top: 5vh;
   form {
     width: 80%;

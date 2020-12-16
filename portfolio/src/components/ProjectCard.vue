@@ -74,9 +74,11 @@ export default defineComponent({
   .flip-card {
     background-color: transparent;
     width: 95%;
-    height: 30vh;
+    min-height: 200px;
+    height: 20vh;
+    max-height: 300px;
     perspective: 1000px;
-    max-width:500px
+    max-width: 500px;
   }
   .flip-card-inner {
     position: relative;
@@ -158,7 +160,7 @@ export default defineComponent({
       font-size: 25px;
       color: $accentColor;
       font-weight: bold;
-      cursor:pointer;
+      cursor: pointer;
     }
     p {
       height: 55%;
@@ -179,7 +181,7 @@ export default defineComponent({
       color: $blueColor;
       font-size: 1rem;
       font-weight: bold;
-      text-decoration:underline overline 1px;
+      text-decoration: underline overline 1px;
     }
     .project-links {
       position: absolute;
@@ -205,25 +207,25 @@ export default defineComponent({
   }
   @media only screen and (max-width: 768px) {
     .main-project-card-container {
-     .flip-card{
+      .flip-card {
         .flip-card-front {
-        background-color: $backgroundColor;
-        img {
-          margin: auto;
-          width: 100%;
-          height: 100%;
+          background-color: $backgroundColor;
+          img {
+            margin: auto;
+            width: 100%;
+            height: 100%;
+          }
+          p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+          }
         }
-        p {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 0.7rem;
+        .flip-card-back {
+          font-size: 0.8rem;
         }
       }
-      .flip-card-back {
-        font-size: 0.8rem;
-      }
-     }
     }
   }
 }

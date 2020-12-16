@@ -23,23 +23,22 @@
   justify-content: center;
   align-items: center;
   background-color: $backgroundColor;
-  
+
   // height: 100vh;
   .about-container {
     padding-top: 5%;
     display: flex;
     flex-direction: column;
     h1 {
-      margin-top: 2%; 
+      margin-top: 2%;
     }
     .about-image {
       display: flex;
       justify-content: center;
       align-items: center;
-      img{
+      img {
         height: 150px;
         border-radius: 50%;
-
       }
     }
     .about-text {
@@ -49,8 +48,8 @@
       align-items: start;
       text-align: left;
       overflow: auto;
-      color:$accentColor;
-   }
+      color: $accentColor;
+    }
     .name-text {
       h1 {
         align-items: center;
@@ -142,12 +141,11 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "Home",
   components: {},
-  data(){
+  data() {
     return {
       i: 0,
-      baseText:
-      `I am currently going to Uneversity for mechanical engeneering majoring in mechanical design. I am working as a game programmer for an indie studio based in Nis Serbia on the Unity3D Game Engine.
-      Aside from University and game development i also work freelance as a front end web developer in technologies like ReactJS and VueJS and write projects in python c# and javascript in my spare time.`,
+      baseText: `I am currently going to Uneversity for mechanical engeneering majoring in mechanical design. I am working as a game programmer for an indie studio based in Nis Serbia on the Unity3D Game Engine.
+      Aside from University and game development i also work freelance as a front end web developer in technologies like ReactJS and VueJS and make projects in python c# and javascript in my spare time.`,
       OutputText: "",
       speed: 5,
     };

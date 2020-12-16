@@ -19,7 +19,7 @@
 import { defineComponent } from "vue";
 import NavBar from "../components/NavBar.vue";
 import ContactModal from "../components/ContactModal.vue";
-import MainContainer from '../components/MainContainer.vue'
+import MainContainer from "../components/MainContainer.vue";
 
 interface DataInterface {
   flipCondition: string;
@@ -53,19 +53,6 @@ export default defineComponent({
       this.activateBack = "activate-back";
       console.log(this.activateBack);
     },
-  },
-  mounted() {
-    (async function(){
-      const x = await fetch("localhost:5000/test")
-        .then((c) => {
-          console.log(x);
-          console.log(c);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    })();
-   
   },
 });
 </script>

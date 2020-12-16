@@ -1,6 +1,6 @@
 <template>
   <div class="main-contact-container">
-    <form :class="['contact-form', contactFormState]">
+    <form v-if="contactFormState" :class="['contact-form']">
       <button class="close-contact-form-btn" @click="openContactForm">X</button>
       <label for="name">Name</label>
       <input type="text" name="name" id="name" />
@@ -35,17 +35,18 @@ import { stringifyQuery } from "vue-router";
 export default defineComponent({
   name: "ContactModal",
   components: {},
-  data(){
+  data() {
     return {
-      contactFormState: "null",
+      contactFormState: false,
     };
   },
   methods: {
     openContactForm: function (e: any) {
       e.preventDefault();
-      this.contactFormState == "open-contact-form"
-        ? (this.contactFormState = "null")
-        : (this.contactFormState = "open-contact-form");
+      console.log("click");
+      console.log(this.contactFormState);
+      this.contactFormState = !this.contactFormState;
+      console.log(this.contactFormState);
     },
   },
 });
@@ -68,7 +69,8 @@ export default defineComponent({
     padding: 5%;
     display: flex;
     flex-direction: column;
-    display: none;
+    background-color: $backgroundColor;
+    border: solid 1px $greyColor;
     input[type="text"],
     input[type="email"],
     select {
@@ -80,7 +82,7 @@ export default defineComponent({
       border: 1px solid #ccc;
       border-radius: 4px;
       box-sizing: border-box;
-      font-size: 25px;
+      font-size: 17px;
       background-color: #e7eaef;
     }
     textarea {
@@ -92,7 +94,7 @@ export default defineComponent({
       border-radius: 4px;
       background-color: #e7eaef;
       resize: none;
-      font-size: 25px;
+      font-size: 17px;
     }
     label {
       color: $accentColor;
@@ -146,7 +148,7 @@ export default defineComponent({
     position: absolute;
     left: 50%;
     bottom: -30px;
-}
+  }
   .center {
     width: 180px;
     height: 60px;
@@ -196,11 +198,11 @@ export default defineComponent({
 }
 
 @media only screen and (max-width: 768px) {
-.main-contact-container {
-  .contact-form {
-    position: absolute;
-    width: 90vw;
-    left: 5vw;
+  .main-contact-container {
+    .contact-form {
+      position: absolute;
+      width: 90vw;
+      left: 5vw;
     }
   }
 }

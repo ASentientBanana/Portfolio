@@ -1,17 +1,6 @@
 <template>
   <div class="main-container">
     <h1 class="title">Projects</h1>
-    <!-- <div class="tag-container">
-      <h3>Tags</h3>
-      <div>
-        <TechTag
-          v-for="(i, index) in Object.keys(technologies)"
-          :key="index"
-          :tagText="i"
-          :technologies="technologies"
-        />
-      </div>
-    </div> -->
     <div class="project-container">
       <ProjectCard
         v-for="(proj, index) in projects"
@@ -19,7 +8,7 @@
         :id="index"
         :name="proj.name"
         :description="proj.description"
-        :image="require(`../assets/images/projects/${proj.image}` )"
+        :image="require(`../assets/images/projects/${proj.image}`)"
         :tech="proj.tech"
         :github="proj.github"
         :live="proj.live"
@@ -44,10 +33,9 @@ export default defineComponent({
       projects: [
         {
           name: "project",
-          description:
-            "A simple blog using react ,nodejs and postgre sql",
+          description: "A simple blog using react ,nodejs and postgre sql",
           image: "tmp.png",
-          github:"https://github.com/ASentientBanana/blog",
+          github: "https://github.com/ASentientBanana/blog",
           tech: ["vue", "nodejs"],
         },
         {
@@ -55,18 +43,43 @@ export default defineComponent({
           description:
             "A visualiser made in react showing how bubble sort , selection sort and quicksort work",
           image: "sort.png",
-          github:"https://github.com/ASentientBanana/blog",
-          live:"https://www.sorting.petarkocic.net/",
-          tech: ["ReactJS", "JavaScript", "CSS","HTML"],
+          github: "https://github.com/ASentientBanana/blog",
+          live: "https://www.sorting.petarkocic.net/",
+          tech: ["ReactJS", "JavaScript", "CSS", "HTML"],
         },
         {
           name: "Movie info app",
           description:
             "An app for displaing information about movies such as actor credits written in flutter and using The MovieDb API.",
           image: "sort.png",
-          github:"https://github.com/ASentientBanana/FlutterActorCredits",
-          live:"https://www.sorting.petarkocic.net/",
-          tech: ["ReactJS", "JavaScript", "CSS","HTML"],
+          github: "https://github.com/ASentientBanana/FlutterActorCredits",
+          live: "https://www.sorting.petarkocic.net/",
+          tech: ["ReactJS", "JavaScript", "CSS", "HTML"],
+        },
+        {
+          name: "project",
+          description: "A simple blog using react ,nodejs and postgre sql",
+          image: "tmp.png",
+          github: "https://github.com/ASentientBanana/blog",
+          tech: ["vue", "nodejs"],
+        },
+        {
+          name: "Sorting Visualiser",
+          description:
+            "A visualiser made in react showing how bubble sort , selection sort and quicksort work",
+          image: "sort.png",
+          github: "https://github.com/ASentientBanana/blog",
+          live: "https://www.sorting.petarkocic.net/",
+          tech: ["ReactJS", "JavaScript", "CSS", "HTML"],
+        },
+        {
+          name: "Movie info app",
+          description:
+            "An app for displaing information about movies such as actor credits written in flutter and using The MovieDb API.",
+          image: "sort.png",
+          github: "https://github.com/ASentientBanana/FlutterActorCredits",
+          live: "https://www.sorting.petarkocic.net/",
+          tech: ["ReactJS", "JavaScript", "CSS", "HTML"],
         },
       ],
       technologies: {
@@ -77,9 +90,9 @@ export default defineComponent({
       },
     };
   },
-  mounted(){
+  mounted() {
     console.log(Object.keys(this.technologies));
-  }
+  },
 });
 </script>
 
@@ -115,11 +128,10 @@ export default defineComponent({
     padding-top: 10px;
     max-height: 60vh;
     max-width: 90vw;
-    overflow-y:scroll;
+    overflow-y: scroll;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     row-gap: 20px;
-    
   }
   @media only screen and (max-width: 768px) {
     .project-container {
