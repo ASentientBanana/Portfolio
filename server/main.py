@@ -1,15 +1,21 @@
 import json
 import random
-from flask import Flask, jsonify, Response, request
+from flask import Flask, jsonify, Response, request , g
 from models.Project import Project
 from util import write_to_json
 import uuid
 import sqlite3
-
-app = Flask(__name__)
+from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
 
 DATABASE = './database.db'
 
+app = Flask(__name__)
+CORS(app)
+DATABASE = './database.db'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////database.db'
+db = SQLAlchemy(app)
 
 @app.route('/')
 def home():
@@ -45,14 +51,10 @@ def edit_project():
 
 @app.route('/test', methods=['POST'])
 def test():
-    if request.method == 'GET':
-        print('-----------------')
-        print('got')
-        print('-----------------')
     if request.method == 'POST':
         print('-----------------')
 
-    return Response("test")
+    return Response('ok')
 
 
 if __name__ == "__main__":

@@ -74,7 +74,7 @@ export default defineComponent({
   .flip-card {
     background-color: transparent;
     width: 95%;
-    height: 25vh;
+    height: 30vh;
     perspective: 1000px;
     max-width:500px
   }
