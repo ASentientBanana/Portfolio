@@ -1,6 +1,8 @@
 <template>
   <div class="main-container">
-    <h1 class="title">Projects</h1>
+    <h1 class="title" @click="getProjectList">Projects</h1>
+
+    <h1 v-if="isLoading">{{ isLoading }}</h1>
     <div class="project-container">
       <ProjectCard
         v-for="(proj, index) in projects"
@@ -8,9 +10,9 @@
         :id="index"
         :name="proj.name"
         :description="proj.description"
-        :image="require(`../assets/images/projects/${proj.image}`)"
-        :tech="proj.tech"
-        :github="proj.github"
+        :image="proj.image"
+        :tech="['C#']"
+        :github="proj.git"
         :live="proj.live"
       />
     </div>
@@ -21,8 +23,7 @@
 import { defineComponent } from "vue";
 import ProjectCard from "../components/ProjectCard.vue";
 import TechTag from "../components/TechTag.vue";
-// import tmp from '../assets/images/tmp.png';
-
+import axios from "axios";
 export default defineComponent({
   name: "Projects",
   components: {
@@ -32,56 +33,17 @@ export default defineComponent({
     return {
       projects: [
         {
-          name: "project",
-          description: "A simple blog using react ,nodejs and postgre sql",
+          created: "2020-12-16 14:19:04.143876",
+          description: "test2",
+          git: "test4",
           image: "tmp.png",
-          github: "https://github.com/ASentientBanana/blog",
-          tech: ["vue", "nodejs"],
-        },
-        {
-          name: "Sorting Visualiser",
-          description:
-            "A visualiser made in react showing how bubble sort , selection sort and quicksort work",
-          image: "sort.png",
-          github: "https://github.com/ASentientBanana/blog",
-          live: "https://www.sorting.petarkocic.net/",
-          tech: ["ReactJS", "JavaScript", "CSS", "HTML"],
-        },
-        {
-          name: "Movie info app",
-          description:
-            "An app for displaing information about movies such as actor credits written in flutter and using The MovieDb API.",
-          image: "sort.png",
-          github: "https://github.com/ASentientBanana/FlutterActorCredits",
-          live: "https://www.sorting.petarkocic.net/",
-          tech: ["ReactJS", "JavaScript", "CSS", "HTML"],
-        },
-        {
-          name: "project",
-          description: "A simple blog using react ,nodejs and postgre sql",
-          image: "tmp.png",
-          github: "https://github.com/ASentientBanana/blog",
-          tech: ["vue", "nodejs"],
-        },
-        {
-          name: "Sorting Visualiser",
-          description:
-            "A visualiser made in react showing how bubble sort , selection sort and quicksort work",
-          image: "sort.png",
-          github: "https://github.com/ASentientBanana/blog",
-          live: "https://www.sorting.petarkocic.net/",
-          tech: ["ReactJS", "JavaScript", "CSS", "HTML"],
-        },
-        {
-          name: "Movie info app",
-          description:
-            "An app for displaing information about movies such as actor credits written in flutter and using The MovieDb API.",
-          image: "sort.png",
-          github: "https://github.com/ASentientBanana/FlutterActorCredits",
-          live: "https://www.sorting.petarkocic.net/",
-          tech: ["ReactJS", "JavaScript", "CSS", "HTML"],
+          live: "test5",
+          name: "test1",
+          tech: "test3",
+          updated: "2020-12-16 14:19:04.143876",
         },
       ],
+      isLoading: false,
       technologies: {
         vue: "green",
         react: "blue",
@@ -90,8 +52,19 @@ export default defineComponent({
       },
     };
   },
-  mounted() {
-    console.log(Object.keys(this.technologies));
+  methods: {
+    async getProjectList() {
+      try {
+        const res = await axios.get("http://localhost:5000/get-projects");
+        const data = await res.data;
+        this.projects = data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+  created() {
+    this.getProjectList();
   },
 });
 </script>

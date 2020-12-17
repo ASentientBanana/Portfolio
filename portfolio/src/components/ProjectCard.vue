@@ -4,7 +4,7 @@
       <div :class="[flipState, 'flip-card-inner']">
         <div class="flip-card-front">
           <img
-            :src="image"
+            :src="'data:image/png;base64, ' + image"
             :alt="name"
             @click="doAFlip"
             :class="clickEventDisable"
@@ -40,7 +40,7 @@ export default defineComponent({
     name: String,
     description: String,
     image: String,
-    tech: [],
+    tech: String,
     github: String,
     live: String,
   },
@@ -50,6 +50,9 @@ export default defineComponent({
       flipState: "null",
       clickEventDisable: "null",
     };
+  },
+  mounted() {
+    console.log(this.image);
   },
   methods: {
     doAFlip() {

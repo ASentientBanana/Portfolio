@@ -3,17 +3,19 @@
     <form v-if="contactFormState" :class="['contact-form']">
       <button class="close-contact-form-btn" @click="openContactForm">X</button>
       <label for="name">Name</label>
-      <input type="text" name="name" id="name" />
+      <input v-model="senderName" type="text" name="name" id="name" />
       <label for="email">Email</label>
-      <input type="email" name="email" id="email" />
+      <input v-model="sender" type="email" name="email" id="email" />
       <label for="contact-form-conetent">Message</label>
       <textarea
+        v-model="contactBody"
         name="content"
         id="contact-form-conetent"
         cols="30"
         rows="10"
       ></textarea>
-      <input type="submit" value="Submit" />
+      <input @click="sendMail" type="submit" value="Send" />
+      <h1 v-if="isSent">Mail sent</h1>
     </form>
     <div class="container">
       <div class="center">
@@ -32,18 +34,35 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { stringifyQuery } from "vue-router";
+import axios from "axios";
 export default defineComponent({
   name: "ContactModal",
   components: {},
   data() {
     return {
       contactFormState: false,
+      contactBody: "",
+      sender: "",
+      senderName: "",
+      isSent: false,
     };
   },
   methods: {
+    async sendMail(event: any) {
+      event.preventDefault();
+      const fd = new FormData();
+      fd.append("contact_body", this.contactBody);
+      fd.append("sender_name", this.senderName);
+      fd.append("sender", this.sender);
+      axios
+        .post("http://localhost:5000/contact-me", fd)
+        .then((response) => {
+          if (response.data === 200) this.isSent = true;
+        })
+        .catch((e) => console.log(e));
+    },
     openContactForm: function (e: any) {
       e.preventDefault();
-      console.log("click");
       console.log(this.contactFormState);
       this.contactFormState = !this.contactFormState;
       console.log(this.contactFormState);

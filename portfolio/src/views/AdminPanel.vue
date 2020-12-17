@@ -60,6 +60,7 @@
       />
     </form>
     <h2 v-if="projectAdded">Project added</h2>
+    <div></div>
   </div>
 </template>
 
