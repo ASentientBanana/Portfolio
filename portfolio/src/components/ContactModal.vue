@@ -1,12 +1,12 @@
 <template>
   <div class="main-contact-container">
-    <form v-if="contactFormState" :class="['contact-form']">
+    <form v-if="contactFormState" :class="contact-form">
       <button class="close-contact-form-btn" @click="openContactForm">X</button>
-      <label for="name">Name</label>
+      <label requred for="name">Name</label>
       <input v-model="senderName" type="text" name="name" id="name" />
-      <label for="email">Email</label>
+      <label requred for="email">Email</label>
       <input v-model="sender" type="email" name="email" id="email" />
-      <label for="contact-form-conetent">Message</label>
+      <label requred for="contact-form-conetent">Message</label>
       <textarea
         v-model="contactBody"
         name="content"
@@ -51,21 +51,24 @@ export default defineComponent({
     async sendMail(event: any) {
       event.preventDefault();
       const fd = new FormData();
-      fd.append("contact_body", this.contactBody);
       fd.append("sender_name", this.senderName);
       fd.append("sender", this.sender);
+      fd.append("contact_body", this.contactBody);
       axios
-        .post("http://localhost:5000/contact-me", fd)
+        .post("http://localhost:5000/send-contact-mail", fd)
         .then((response) => {
-          if (response.data === 200) this.isSent = true;
+          if (response.data === 200) {
+            this.isSent = true;
+            this.contactBody = "";
+            this.sender = "";
+            this.senderName = "";
+          }
         })
         .catch((e) => console.log(e));
     },
     openContactForm: function (e: any) {
       e.preventDefault();
-      console.log(this.contactFormState);
       this.contactFormState = !this.contactFormState;
-      console.log(this.contactFormState);
     },
   },
 });

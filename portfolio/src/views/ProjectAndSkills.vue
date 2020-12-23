@@ -1,11 +1,12 @@
 <template>
   <div class="main-container">
-    <h1 class="title" @click="getProjectList">Projects</h1>
-
+    <h1 class="title">Projects</h1>
+    <label for="search-projects"  placeholder="C#,Nodejs">Search projects </label>
+    <input type="search" v-model="search" name="search-projects" id="search-projects">
     <h1 v-if="isLoading">{{ isLoading }}</h1>
     <div class="project-container">
       <ProjectCard
-        v-for="(proj, index) in projects"
+        v-for="(proj, index) in projectsTmp"
         :key="index"
         :id="index"
         :name="proj.name"
@@ -31,19 +32,10 @@ export default defineComponent({
   },
   data() {
     return {
-      projects: [
-        {
-          created: "2020-12-16 14:19:04.143876",
-          description: "test2",
-          git: "test4",
-          image: "tmp.png",
-          live: "test5",
-          name: "test1",
-          tech: "test3",
-          updated: "2020-12-16 14:19:04.143876",
-        },
-      ],
+      projects: [],
+      projectsTmp:[],
       isLoading: false,
+      search:'',
       technologies: {
         vue: "green",
         react: "blue",
@@ -57,11 +49,22 @@ export default defineComponent({
       try {
         const res = await axios.get("http://localhost:5000/get-projects");
         const data = await res.data;
-        this.projects = data;
+        console.log(data);
+        
+        // this.projects = data;
+        // this.projectsTmp = this.projects;
+        // console.log(this.projectsTmp);
+        
       } catch (error) {
         console.log(error);
       }
     },
+  },
+  watch:{
+    search:function(e:any){
+        if(this.search === '')this.projectsTmp = this.projects
+        else this.projectsTmp = this.projects.filter((project:any)=>project.name.includes(this.search))
+    }
   },
   created() {
     this.getProjectList();
@@ -73,7 +76,9 @@ export default defineComponent({
 @import "../assets/colors/colors.scss";
 .main-container {
   background-color: #15222a;
-  // border: thistle 1px solid;
+  label{
+    color:$accentColor
+  }
   .title {
     color: $accentColor;
   }

@@ -1,5 +1,5 @@
 <template>
-  <form v-if="showForm" action="" method="post">
+  <form v-if="showAddForm" action="" method="post">
     <label for="project-name" ref="proj">Project Name</label>
     <input
       type="text"

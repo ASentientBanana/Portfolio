@@ -51,9 +51,6 @@ export default defineComponent({
       clickEventDisable: "null",
     };
   },
-  mounted() {
-    console.log(this.image);
-  },
   methods: {
     doAFlip() {
       if (this.flipState === "do-a-flip") this.flipState = "null";
@@ -77,7 +74,7 @@ export default defineComponent({
   .flip-card {
     background-color: transparent;
     width: 95%;
-    min-height: 200px;
+    min-height: 250px;
     height: 20vh;
     max-height: 300px;
     perspective: 1000px;
