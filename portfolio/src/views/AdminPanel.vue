@@ -49,14 +49,12 @@
         @change="imageHandler"
         name="project-image"
         id="project-image"
-        
       />
     </form>
-     <div>
-        <button @click="testClick">Add</button>
-        <button @click="editProject">Update</button>
-        
-      </div>
+    <div>
+      <button @click="testClick">Add</button>
+      <button @click="editProject">Update</button>
+    </div>
     <h2 v-if="projectAdded">Project added</h2>
     <div></div>
     <div v-if="renderList" class="admin-project-list">
@@ -90,7 +88,7 @@ export default defineComponent({
       git: "",
       live: "",
       image: "",
-      created:"",
+      created: "",
       renderList: false,
       passwordField: "",
       projectList: [],
@@ -116,7 +114,7 @@ export default defineComponent({
     async sendRequest(formData: FormData) {
       try {
         axios
-          .post("http://localhost:5000/add-project", formData)
+          .post("http://localhost:3333/add-project", formData)
           .then((response) => {
             if (response.data === 200) this.projectAddedShow();
           })
@@ -135,9 +133,11 @@ export default defineComponent({
       const fd = new FormData();
       fd.append("password", this.passwordField);
       axios
-        .post("http://localhost:5000/log-in", fd)
+        .post("http://localhost:3333/api/login", fd)
         .then((response) => {
-          if (response.data === 200) {
+          console.log(response.status);
+
+          if (response.status === 200) {
             this.showAddForm = true;
             this.getProjectList();
           } else if (response.data === 401) this.wrongPassword = true;
@@ -146,8 +146,7 @@ export default defineComponent({
     },
     async getProjectList() {
       try {
-        
-        const res = await axios.get("http://localhost:5000/get-projects");
+        const res = await axios.get("http://localhost:3333/api/projects");
         const data = await res.data;
         this.projectList = data;
         console.log(data);
@@ -159,9 +158,8 @@ export default defineComponent({
     async deleteProject(name: string) {
       try {
         const res = await axios
-          .delete(`http://localhost:5000/delete-project/${name}`)
+          .delete(`http://localhost:3333/delete-project/${name}`)
           .then((response) => {
-            
             this.projectList = response.data;
           })
           .catch((er) => console.log(er));
@@ -170,12 +168,12 @@ export default defineComponent({
       }
     },
     async editProject() {
-      const fd:FormData = this.addToFormData()
-      fd.delete('project_image')
-      fd.append('project_image',this.image)
+      const fd: FormData = this.addToFormData();
+      fd.delete("project_image");
+      fd.append("project_image", this.image);
       try {
         const res = await axios
-          .post('http://localhost:5000/edit',fd)
+          .post("http://localhost:3333/edit", fd)
           .then((response) => {
             this.projectList = response.data;
           })
@@ -184,16 +182,16 @@ export default defineComponent({
         console.log(error);
       }
     },
-    fillProjectData(proj:any){
+    fillProjectData(proj: any) {
       console.log(proj);
-      
-      this.projectName = proj.name
-      this.description = proj.description
-      this.tech = proj.tech
-      this.git = proj.git
-      this.live = proj.live
-      this.image = proj.image
-    }
+
+      this.projectName = proj.name;
+      this.description = proj.description;
+      this.tech = proj.tech;
+      this.git = proj.git;
+      this.live = proj.live;
+      this.image = proj.image;
+    },
   },
 });
 </script>

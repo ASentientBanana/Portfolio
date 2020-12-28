@@ -1,30 +1,37 @@
-const express = require('express')
-const projectJson = require('./projects.json')
-const app = express()
-const port = 3333
-const path = require('path')
-
-
+const express = require("express");
+const projectJson = require("./projects.json");
+const app = express();
+const port = 3333;
+const path = require("path");
+const cors = require("cors");
 
 /*
 get projects
 */
-app.use('/static', express.static(path.join(__dirname, 'public')))
+const projectNameToImageName = (name) => name.replace(" ", "-");
+app.use(cors());
+app.use("/static", express.static(path.join(__dirname, "public")));
 
-app.get('/', (req, res) => {
-res.send('hi')
-})
+app.get("api/remove/", (req, res) => {
+  res.send("hi");
+});
 
+app.get("/api/projects", (req, res) => {
+  res.send(projectJson);
+});
 
-app.get('/api/projects', (req, res) => {
+//-post
+app.post("/api/project/add", (req, res) => {
+  console.log(req.body);
+});
+app.post("/api/login", (req, res) => {
+  console.log(req.statusCode);
+  res.sendStatus(200);
+});
 
-    res.sendFile(dir)
-    console.log(dir);
-})
-  
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
-  })
+  console.log(`Example app listening at http://localhost:${port}`);
+});
 
 //   id =
 //   name =
@@ -35,9 +42,3 @@ app.listen(port, () => {
 //   live =
 //   created =
 //   updated =
-
-  class ProjectModel{
-    constructor(id ,name ,description ,tech ,git ,image ,live ,created ,updated){
-
-    }
-  }
