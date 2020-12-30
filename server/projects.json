@@ -11,11 +11,24 @@
       "SCSS",
       "NodeJS"
     ],
-    "image": "http://localhost:3333/static/images/zenmasaza.jpg",
+    "image": "http://api.petarkocic.net/static/images/zenmasaza.jpg",
     "live": "https://zenmasaza.com/#/rs/pocetna"
   },
   {
     "id": "1",
+    "name": "Portfolio",
+    "description": "A portfolio site made in VueJS and NodeJS",
+    "tech": [
+      "VueJS",
+      "NodeJS",
+      "TypeScript",
+      "Express"
+    ],
+    "image": "http://api.petarkocic.net/static/images/Ball.png",
+    "live": "https://play.google.com/store/apps/details?id=com.exeplay.offroad.hill.climb.adventure.racing.game"
+  },
+  {
+    "id": "2",
     "name": "Pictionary",
     "description": "A pictionary concept aplication made in React and backend in NodeJS.It Uses socket.io for realtime drawing and comunication.",
     "tech": [
@@ -25,11 +38,11 @@
       "SCSS",
       "NodeJS"
     ],
-    "image": "http://localhost:3333/static/images/pictionary.png",
+    "image": "http://api.petarkocic.net/static/images/pictionary.png",
     "git": "https://github.com/ASentientBanana/OnlineWhiteboard/tree/petar"
   },
   {
-    "id": "2",
+    "id": "3",
     "name": "Pathfinding visualisation",
     "description": "A pathfinding visualiser made in React. It traverses a grid to find the goal. It uses the A*(Astar),Djikstra and BFS(Breath First Search) Algorithms.",
     "tech": [
@@ -38,11 +51,11 @@
       "Typescript",
       "SCSS"
     ],
-    "image": "http://localhost:3333/static/images/pathfinding.png",
+    "image": "http://api.petarkocic.net/static/images/pathfinding.png",
     "git": "https://github.com/ASentientBanana/pathfinding"
   },
   {
-    "id": "3",
+    "id": "4",
     "name": "Sorting visualisation",
     "description": "A sorting visualiser made in React. it shows how the sorting algortihms Bubble sort , Selection sort and quicksort work.",
     "tech": [
@@ -51,39 +64,40 @@
       "Typescript",
       "SCSS"
     ],
-    "image": "http://localhost:3333/static/images/sorting.png",
+    "image": "http://api.petarkocic.net/static/images/sorting.png",
     "git": "https://github.com/ASentientBanana/SortingVisualiser"
   },
+  
   {
-    "id": "4",
+    "id": "5",
     "name": "Balloon Sky Rise Adventure",
     "description": "Casual endless runner game written in C# using Unity3D",
     "tech": [
       "C#",
       "Unity3D"
     ],
-    "image": "http://localhost:3333/static/images/baloon.png",
+    "image": "http://api.petarkocic.net/static/images/baloon.png",
     "live": "https://play.google.com/store/apps/details?id=com.exeplay.balloon.sky.rise.adventure.attack.survival.angry.bird"
   },
   {
-    "id": "5",
+    "id": "6",
     "name": "Offroad Hill Climbing ",
     "description": "2D platformer driving game made in Unity3D",
     "tech": [
       "C#",
       "Unity3D"
     ],
-    "image": "http://localhost:3333/static/images/Hill.png",
+    "image": "http://api.petarkocic.net/static/images/Hill.png",
     "live": "https://play.google.com/store/apps/details?id=com.exeplay.offroad.hill.climb.adventure.racing.game"
   },{
-    "id": "6",
+    "id": "7",
     "name": "Unblock & Roll The Ball",
     "description": "2D puzzle game made in Unity3D",
     "tech": [
       "C#",
       "Unity3D"
     ],
-    "image": "http://localhost:3333/static/images/Ball.png",
+    "image": "http://api.petarkocic.net/static/images/Ball.png",
     "live": "https://play.google.com/store/apps/details?id=com.exeplay.offroad.hill.climb.adventure.racing.game"
   }
 ]

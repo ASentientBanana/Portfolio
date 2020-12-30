@@ -6,13 +6,13 @@
     <h1 v-if="isLoading">{{ isLoading }}</h1>
     <div class="project-container">
       <ProjectCard
-        v-for="(proj, index) in projectsTmp"
+        v-for="(proj, index) in projectList"
         :key="index"
         :id="index"
         :name="proj.name"
         :description="proj.description"
         :image="proj.image"
-        :tech="['C#']"
+        :tech="proj.tech"
         :github="proj.git"
         :live="proj.live"
       />
@@ -21,55 +21,22 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent , inject} from "vue";
 import ProjectCard from "../components/ProjectCard.vue";
 import TechTag from "../components/TechTag.vue";
-import axios from "axios";
-export default defineComponent({
+export default {
   name: "Projects",
   components: {
     ProjectCard,
   },
-  data() {
-    return {
-      projects: [],
-      projectsTmp:[],
-      isLoading: false,
-      search:'',
-      technologies: {
-        vue: "green",
-        react: "blue",
-        node: "teal",
-        csharp: "purple",
-      },
-    };
-  },
-  methods: {
-    async getProjectList() {
-      try {
-        const res = await axios.get("http://localhost:5000/get-projects");
-        const data = await res.data;
-        console.log(data);
-        
-        // this.projects = data;
-        // this.projectsTmp = this.projects;
-        // console.log(this.projectsTmp);
-        
-      } catch (error) {
-        console.log(error);
-      }
-    },
-  },
-  watch:{
-    search:function(e:any){
-        if(this.search === '')this.projectsTmp = this.projects
-        else this.projectsTmp = this.projects.filter((project:any)=>project.name.includes(this.search))
+  setup(){
+    const projectList = inject('projectsList');
+    return{
+      projectList
     }
-  },
-  created() {
-    this.getProjectList();
-  },
-});
+    
+  }
+};
 </script>
 
 <style lang="scss" scoped>

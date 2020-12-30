@@ -1,7 +1,8 @@
 <template>
   <div class="main-contact-container">
-    <form v-if="contactFormState" :class="contact-form">
+    <form v-if="contactFormState" class="contact-form">
       <button class="close-contact-form-btn" @click="openContactForm">X</button>
+      <h2>Email: mail@petarkocic.net</h2>
       <label requred for="name">Name</label>
       <input v-model="senderName" type="text" name="name" id="name" />
       <label requred for="email">Email</label>
@@ -16,6 +17,10 @@
       ></textarea>
       <input @click="sendMail" type="submit" value="Send" />
       <h1 v-if="isSent">Mail sent</h1>
+      <div class="social-container">
+        <a href="https://github.com/ASentientBanana"><img :src="require('../assets/social/github.png')" alt=""></a>
+        <a href="https://www.linkedin.com/in/petar-kocic-74a987190/"><img :src="require('../assets/social/linkedin.png')" alt=""></a>
+      </div>
     </form>
     <div class="container">
       <div class="center">
@@ -50,12 +55,12 @@ export default defineComponent({
   methods: {
     async sendMail(event: any) {
       event.preventDefault();
-      const fd = new FormData();
-      fd.append("sender_name", this.senderName);
-      fd.append("sender", this.sender);
-      fd.append("contact_body", this.contactBody);
       axios
-        .post("http://localhost:5000/send-contact-mail", fd)
+        .post("http://api.petarkocic.net/send-mail",{
+          senderName:this.senderName,
+          sender:this.sender,
+          contactBody:this.contactBody
+        } )
         .then((response) => {
           if (response.data === 200) {
             this.isSent = true;
@@ -68,6 +73,8 @@ export default defineComponent({
     },
     openContactForm: function (e: any) {
       e.preventDefault();
+      console.log('c');
+      
       this.contactFormState = !this.contactFormState;
     },
   },
@@ -148,6 +155,16 @@ export default defineComponent({
       border: none;
       cursor: pointer;
       font-size: 25px;
+    }
+    .social-container{
+      height: 40px;
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      img{
+        height: 40px;
+        width: 40px;
+      }
     }
   }
   .open-contact-form {

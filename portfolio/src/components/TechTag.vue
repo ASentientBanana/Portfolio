@@ -9,14 +9,14 @@
 <style scoped lang="scss">
 @import "../assets/colors/colors.scss";
     .tag{
-        background-color: none;
         color: white;
-        text-align: justify !important;
+        background-color: none;
         max-width: 100px !important;
         border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
         border-top-right-radius: 1px;
+        border-bottom-left-radius: 5px;
         border-bottom-right-radius: 1px;
+        text-align: justify !important;
         border:solid 1px red;
         .hole{
             width: 12px;

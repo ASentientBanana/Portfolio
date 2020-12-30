@@ -5,22 +5,24 @@
 </template>  
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent , provide , ref} from "vue";
 import NavBar from "./components/NavBar.vue";
 import ContactModal from "./components/ContactModal.vue";
-
-interface DataInterface {
-  flipCondition: string;
-  flipCardInner: string;
-  activateBack: string;
-}
-export default defineComponent({
+import axios from 'axios'
+export default {
   name: "Home",
 
-  components: {
-  },
-  
-});
+  setup() {
+    const projectList  = ref([])
+    axios.get('https://api.petarkocic.net/projects').then((response=>{
+      projectList.value = response.data
+      console.log(projectList);
+      
+    })).catch(err=>console.log(err))
+
+  provide('projectsList',projectList)
+},
+};
 </script>
 
 <style lang="scss">

@@ -4,7 +4,7 @@
       <div :class="[flipState, 'flip-card-inner']">
         <div class="flip-card-front">
           <img
-            :src="'data:image/png;base64, ' + image"
+            :src="image"
             :alt="name"
             @click="doAFlip"
             :class="clickEventDisable"
@@ -188,7 +188,7 @@ export default defineComponent({
       width: 100%;
       bottom: 5px;
       display: flex;
-      justify-content: space-around;
+      justify-content: space-evenly;
       height: 20px;
       a {
         background-color: $blueColor;
@@ -206,8 +206,7 @@ export default defineComponent({
     }
   }
   @media only screen and (max-width: 768px) {
-    .main-project-card-container {
-      .flip-card {
+
         .flip-card-front {
           background-color: $backgroundColor;
           img {
@@ -224,10 +223,12 @@ export default defineComponent({
         }
         .flip-card-back {
           font-size: 0.8rem;
+          ul{
+            display: grid;
+            grid-template-columns:1fr 1fr 1fr;
+          }
         }
       }
-    }
-  }
 }
 </style>
 
