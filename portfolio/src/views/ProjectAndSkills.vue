@@ -1,8 +1,8 @@
 <template>
   <div class="main-container">
     <h1 class="title">Projects</h1>
-    <label for="search-projects"  placeholder="C#,Nodejs">Search projects </label>
-    <input type="search" v-model="search" name="search-projects" id="search-projects">
+    <!-- <label for="search-projects"  placeholder="C#,Nodejs">Search projects </label> -->
+    <!-- <input type="search" v-model="search" name="search-projects" id="search-projects"> -->
     <h1 v-if="isLoading">{{ isLoading }}</h1>
     <div class="project-container">
       <ProjectCard

@@ -239,6 +239,12 @@ export default defineComponent({
 @media only screen and (max-width: 768px) {
   .main-contact-container {
     .contact-form {
+      textarea{
+        height: 30%;
+      }
+      h2{
+        font-size: 0.9rem;
+      }
       position: absolute;
       width: 90vw;
       left: 5vw;
